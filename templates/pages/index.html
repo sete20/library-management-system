@@ -93,12 +93,9 @@
             <!-- /.card-header -->
             <!-- form start -->
             <form method="POST" enctype="multipart/form-data"  > 
+              {% csrf_token %}
               <div class="card-body"> 
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
+                {{ context.form }}
                 <small id='totalrente' class="form-text text-muted"></small>
               </div>
               <!-- /.card-body -->
@@ -118,9 +115,11 @@
           <div class="row justify-content-center mb-3">
             <div class="col-4 ">
               <ul class="nav">
-                {% for category in categories %}
+                {% for category in context.categories %}
                 <li class="nav-item ">
-                  <a id="" class="nav-link bg-primary" href="#">{{ category.name }}</a>
+                  <br>
+                  <a id="" class="nav-link bg-primary" href="{% url "search_by_category" category.id %}">{{ category.name }}</a>
+                  <br>
                 </li>
                 {% endfor %}
             
@@ -142,8 +141,8 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{% url 'update' %}">تعديل</a>
-                    <a class="dropdown-item" href="{% url 'delete' %}">حذف</a>
+                    <a class="dropdown-item" href="{% url 'update' book.id %}">تعديل</a>
+                    <a class="dropdown-item" href="{% url 'delete' book.id %}">حذف</a>
                 <!-- Button trigger modal -->
                   </div>
                 </div>

@@ -13,8 +13,9 @@
       </div>
       <!-- /.card-header -->
       <!-- form start -->
-      <form  method="POST" enctype="multipart/form-data">
-      
+      <form  method="POST" enctype="multipart/form-data" >
+        {% csrf_token %}
+        
         <div class="row">
           
        <p class="p-3">هل تريد حقاً حذف الكتاب؟</p>
